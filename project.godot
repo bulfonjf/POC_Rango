@@ -13,6 +13,10 @@ config_version=4
 config/name="POC_Rango"
 config/icon="res://icon.png"
 
+[autoload]
+
+ModuloRango="*res://rango/modulo_rango.gd"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
