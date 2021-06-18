@@ -8,9 +8,32 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Reference",
+"class": "Step",
+"language": "GDScript",
+"path": "res://model/step.gd"
+}, {
+"base": "Step",
+"class": "StepNulo",
+"language": "GDScript",
+"path": "res://model/step_nulo.gd"
+}, {
+"base": "Reference",
+"class": "StepsOptimos",
+"language": "GDScript",
+"path": "res://model/steps_optimos.gd"
+} ]
+_global_script_class_icons={
+"Step": "",
+"StepNulo": "",
+"StepsOptimos": ""
+}
+
 [application]
 
 config/name="POC_Rango"
+run/main_scene="res://tests/tests.tscn"
 config/icon="res://icon.png"
 
 [autoload]
