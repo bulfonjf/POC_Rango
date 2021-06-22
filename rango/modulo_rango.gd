@@ -54,7 +54,7 @@ func si_recursos_disponible_para_realizar_el_step(gasto_de_recurso : int, total_
 	return gasto_de_recurso <= total_de_recurso
 
 func si_step_es_optimo(step : Dictionary, steps_optimos : StepsOptimos) -> bool:
-	var step_registrado = steps_optimos.get_by_celda(step.celda)
+	var step_registrado = steps_optimos.get_step_by_celda(step.celda)
 	return step_registrado is StepNulo || step.gasto < step_registrado.gasto
 
 func obtener_celdas_adyacentes(celda : Vector2) -> Array:

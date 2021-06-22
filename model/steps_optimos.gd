@@ -18,7 +18,7 @@ func append(_step_to_add : Step):
     if agregar:
         self.steps.append(_step_to_add)
 
-func get_by_celda(celda : Vector2) -> Step:
+func get_step_by_celda(celda : Vector2) -> Step:
     for step in self.steps:
         if step.celda == celda:
             return step
