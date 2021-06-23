@@ -4,7 +4,7 @@ Algortimo que devuelve un rango de Celdas a partir de un centro, radio, grilla, 
 
 # Conceptos Intrinsecos del modulo de rango
 
-- Rango: Es el conjunto de celda de los steps mas optimos (o los steps que gastaron menos recurso para llevar a esa celda)
+- Rango: Es el conjunto de celdas de los steps mas optimos (o los steps que gastaron menos recurso para llegar a esa celda)
 
 ## Celdas
 

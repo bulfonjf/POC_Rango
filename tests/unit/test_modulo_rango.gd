@@ -5,28 +5,31 @@ func test_constructor_modulo_rango_devuelve_una_instancia_de_modulo_rango():
 	assert_true(ModuloRango != null, "ModuloRango no es null")
 	assert_true(ModuloRango.get_parent() == get_tree().get_root(), "ModuloRango es hijo directo del root (Singleton)")
 
-func test_obtener_rango_devuelve_tipo_de_dato_array():
+func test_obtener_rango_devuelve_tipo_de_dato_rango():
 	# Act
-	var resultado = ModuloRango.obtener_rango(Vector2(0,0), 0)
+	var resultado_obtenido = ModuloRango.obtener_rango(Vector2(0,0), 0)
 
 	# Assert
-	assert_true(resultado is Array, "obtener rango devolvio un array")
+	assert_is(resultado_obtenido, Rango)
 
-func test_obtener_rango_desde_centro_y_radio_devuelve_un_conjunto_de_celdas_de_steps_optimos():
+func test_obtener_rango_desde_centro_y_radio_devuelve_un_rango():
 	# Arrange
 	var centro = Vector2(0,4)
-	var radio = 2
-	var resultado_esperado = [ Vector2(0,4), # CENTRO
-		Vector2(-2,4), Vector2(-1,4), Vector2(1,4), Vector2(2,4), # VARIACION EJE X
-		Vector2(0,2), Vector2(0,3), Vector2(0,5), Vector2(0,6), # VARIACION EJE Y
-		Vector2(1,5), Vector2(1,3), Vector2(-1,3), Vector2(-1,5), # VARIACION DE LAS DOS DIAG EN 1 
-	]
+	var total_recurso = 2
+	var steps_optimos = StepsOptimos.new([
+		Step.new(centro,0), # CENTRO
+		Step.new(Vector2(-2,4), 2), Step.new(Vector2(-1,4), 1), Step.new(Vector2(1,4), 1), Step.new(Vector2(2,4), 2), # VARIACION EJE X
+		Step.new(Vector2(0,2), 2), Step.new(Vector2(0,3), 1), Step.new(Vector2(0,5), 1), Step.new(Vector2(0,6), 2), # VARIACION EJE Y
+		Step.new(Vector2(1,5), 2), Step.new(Vector2(1,3), 1), Step.new(Vector2(-1,3), 1), Step.new(Vector2(-1,5), 2), # VARIACION DE LAS DOS DIAG EN 1 
+	])
+	var resultado_esperado = Rango.new()
+	resultado_esperado.add_steps_optimos(steps_optimos)
 
 	# Act
-	var resultado_obtenido = ModuloRango.obtener_rango(centro, radio)
+	var resultado_obtenido = ModuloRango.obtener_rango(centro, total_recurso)
    
 	# Assert
-	assert_eq(resultado_obtenido.sort(), resultado_esperado.sort())
+	assert_true(resultado_obtenido._eq(resultado_esperado))
 
 func test_obtener_celdas_adyacentes_devuelve_array_de_Vector2_adyacentes_al_centro():
 	var test_suite = [

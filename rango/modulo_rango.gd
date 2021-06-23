@@ -1,6 +1,6 @@
 extends Node
 
-func obtener_rango(centro : Vector2, radio : int) -> Array:
+func obtener_rango(centro : Vector2, radio : int) -> Rango:
 	# numero de pasos del centro
 	var numero_paso = 0
 	# guardo el centro
@@ -15,7 +15,7 @@ func obtener_rango(centro : Vector2, radio : int) -> Array:
 		numero_paso = 0
 		evaluar_camino(celda, numero_paso, dic, radio)
 	
-	return dic.keys()
+	return Rango.new()
 
 func evaluar_camino(celda : Vector2, numero_paso : int, dic : Dictionary, radio: int):
 	#evaluar si el numero de paso es menor al radio => si_celda_dentro_de_radio(radio, numero_paso)
