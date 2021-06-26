@@ -150,4 +150,74 @@ func test_get_step_by_celda_debe_devolver_step_nulo():
 			
 			# Assert
 			assert_true(resultado_obtenido is StepNulo)
+
+func test_eq_debe_devolver_true():
+	#Arrange
+	var steps_optimos_vacio = StepsOptimos.new([])
+	var steps_optimos_un_step = StepsOptimos.new([Step.new(Vector2(2,2), 2)])
+	var steps_optimos_varios_steps = StepsOptimos.new([Step.new(Vector2(2,2), 2), Step.new(Vector2(2,1), 2)])
+
+	var test_suite = [
+		{
+			nombre = "Steps optimos vacios",
+			steps_optimos_1 = steps_optimos_vacio,
+			steps_optimos_2 = steps_optimos_vacio,
+		},
+		{
+			nombre = "Steps optimos con un solo step",
+			steps_optimos_1 = steps_optimos_un_step,
+			steps_optimos_2 = steps_optimos_un_step,
+		
+		},
+		{
+			nombre = "Steps optimos con varios steps",
+			steps_optimos_1 = steps_optimos_varios_steps,
+			steps_optimos_2 = steps_optimos_varios_steps,
+		
+		},
+	]
+
+	#Act
+	for tc in test_suite:
+		var resultado = tc.steps_optimos_1._eq(tc.steps_optimos_2)
+		#Assert
+		assert_true(resultado)
+
+func test_eq_debe_devolver_false():
+	#Arrange
+	var celda_a = Vector2(2,2)
+	var celda_b = Vector2(2,1)
+	var steps_vacio = StepsOptimos.new([])
+	var un_step_celda_a = StepsOptimos.new([Step.new(celda_a, 2)])
+	var un_step_celda_b = StepsOptimos.new([Step.new(celda_b, 2)])
+	var varios_steps_a = StepsOptimos.new([Step.new(celda_a, 2), Step.new(celda_b, 2)])
+	var varios_steps_b = StepsOptimos.new([Step.new(celda_a, 2), Step.new(Vector2(2,3), 2)])
 	
+	var test_suite = [
+		{
+			nombre = "uno vacio y uno con un solo step",
+			steps_optimos_1 = steps_vacio,
+			steps_optimos_2 = un_step_celda_a,
+		},
+		{
+			nombre = "ambos con un solo step distinto",
+			steps_optimos_1 = un_step_celda_a,
+			steps_optimos_2 = un_step_celda_b,
+		},
+		{
+			nombre = "Steps optimos con varios steps distintos",
+			steps_optimos_1 = varios_steps_a,
+			steps_optimos_2 = varios_steps_b,
+		},
+		{
+			nombre = "steps con indentica celda pero distintos gastos de recursos",
+			steps_optimos_1 = StepsOptimos.new([Step.new(celda_a, 3)]),
+			steps_optimos_2 = StepsOptimos.new([Step.new(celda_a, 2)]),
+		},
+	]
+
+	#Act
+	for tc in test_suite:
+		var resultado = tc.steps_optimos_1._eq(tc.steps_optimos_2)
+		#Assert
+		assert_false(resultado)
