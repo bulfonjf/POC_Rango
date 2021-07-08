@@ -1,33 +1,33 @@
 extends "res://addons/gut/test.gd"
 
 func test_init_parametro_default():
-    # Arrange
-    var resultado_esperado = []
-    
-    # Act
-    var resultado_obtenido = StepsOptimos.new()
-    
-    #Assert
-    assert_is(resultado_obtenido, StepsOptimos)
-    assert_eq(resultado_obtenido.steps, resultado_esperado)
+	# Arrange
+	var resultado_esperado = []
+	
+	# Act
+	var resultado_obtenido = StepsOptimos.new()
+	
+	#Assert
+	assert_is(resultado_obtenido, StepsOptimos)
+	assert_eq(resultado_obtenido.steps, resultado_esperado)
 
 func test_init():
-    # Arrange
-    var test_suite = [
-        {
-            nombre = "pasando array vacio - debe crear una instancia de StepOptimos sin steps",
-            steps = [],
-            resultado_esperado = [],
-        },
-    ]
-    
-    for tc in test_suite:
-        # Act
-        var resultado_obtenido = StepsOptimos.new(tc.steps)
-        
-        #Assert
-        assert_is(resultado_obtenido, StepsOptimos)
-        assert_eq(resultado_obtenido.steps, tc.resultado_esperado)
+	# Arrange
+	var test_suite = [
+		{
+			nombre = "pasando array vacio - debe crear una instancia de StepOptimos sin steps",
+			steps = [],
+			resultado_esperado = [],
+		},
+	]
+	
+	for tc in test_suite:
+		# Act
+		var resultado_obtenido = StepsOptimos.new(tc.steps)
+		
+		#Assert
+		assert_is(resultado_obtenido, StepsOptimos)
+		assert_eq(resultado_obtenido.steps, tc.resultado_esperado)
 
 func test_append_debe_agregar():
 	# Arrange
@@ -184,6 +184,7 @@ func test_eq_debe_devolver_true():
 		assert_true(resultado)
 
 func test_eq_debe_devolver_false():
+
 	#Arrange
 	var celda_a = Vector2(2,2)
 	var celda_b = Vector2(2,1)
@@ -221,3 +222,34 @@ func test_eq_debe_devolver_false():
 		var resultado = tc.steps_optimos_1._eq(tc.steps_optimos_2)
 		#Assert
 		assert_false(resultado)
+
+func test_si_step_es_optimo():
+	# Arrange
+
+	var test_suite = [
+		{
+			nombre = "step optimo - debe devolver true",
+			step = {"celda": Vector2(0,0), "gasto": 1},
+			steps_optimos = [
+				Step.new(Vector2(0,0), 2),
+				Step.new(Vector2(0,0), 3),
+			],
+			resultado_esperado = true,
+		},
+		{
+			nombre = "step no optimo - debe devolver false",
+			step = {"celda": Vector2(0,0), "gasto": 7},
+			steps_optimos = [
+				Step.new(Vector2(0,0), 2),
+				Step.new(Vector2(0,0), 3),
+			],
+			resultado_esperado = false,
+		},
+	]
+	
+	for tc in test_suite:
+		print(tc.nombre)
+		var sut = StepsOptimos.new(tc.steps_optimos)
+		var resultado_obtenido = sut.si_step_es_optimo(tc.step)
+		assert_eq(resultado_obtenido, tc.resultado_esperado)
+

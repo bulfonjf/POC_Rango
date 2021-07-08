@@ -16,3 +16,5 @@ _log_level = 2
 _include_subdirectories = true
 _directory1 = "res://tests/unit"
 _directory2 = "res://tests/integration"
+_directory3 = "res://tests/dev"
+_directory4 = "res://tests/unit"

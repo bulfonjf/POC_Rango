@@ -36,3 +36,7 @@ func _eq(_steps_optimos : StepsOptimos) -> bool:
 	else:
 		steps_iguales = false
 	return steps_iguales
+
+func si_step_es_optimo(step : Dictionary) -> bool:
+	var step_registrado = self.get_step_by_celda(step.celda)
+	return step_registrado is StepNulo || step.gasto < step_registrado.gasto

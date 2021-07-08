@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "Grilla",
+"language": "GDScript",
+"path": "res://model/grilla.gd"
+}, {
+"base": "Reference",
 "class": "Rango",
 "language": "GDScript",
 "path": "res://model/rango.gd"
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://model/steps_optimos.gd"
 } ]
 _global_script_class_icons={
+"Grilla": "",
 "Rango": "",
 "Step": "",
 "StepNulo": "",
