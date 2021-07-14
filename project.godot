@@ -50,7 +50,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-ModuloRango="*res://rango/modulo_rango.gd"
+ObtenerRango="*res://api/obtener_rango.gd"
 
 [editor_plugins]
 
